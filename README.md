@@ -38,6 +38,8 @@ sudo systemctl status postgresql:
 
 <img width="758" height="160" alt="image" src="https://github.com/user-attachments/assets/486c270a-b265-45ee-9749-e635f74754c8" />
 
+Aquí se muestra el estado del servicio PostgreSQL tras la instalación. Se puede comprobar que el servicio aparece como `active (running)`, lo que confirma que la base de datos está correctamente instalada y funcionando.
+
 Después accedí a la consola de PostgreSQL:
 
 ````
@@ -54,10 +56,9 @@ GRANT ALL PRIVILEGES ON DATABASE mattermost TO mmuser;
 ````
 Muestro la tabla de los usuarios ya creados:
 
-
 <img width="714" height="322" alt="image" src="https://github.com/user-attachments/assets/5bbfff2b-6748-4ed0-a9b6-c4c796e618fb" />
 
-
+En esta captura se observa la creación de la base de datos `mattermost` y del usuario `mmuser`. Esto permite que la aplicación tenga una base de datos dedicada y no utilice el usuario administrador por defecto.
 
 ## 📦 Descarga e instalación de Mattermost
 
@@ -95,6 +96,8 @@ Con esto conecté la aplicación con PostgreSQL.
 
 <img width="795" height="600" alt="image" src="https://github.com/user-attachments/assets/d8c48595-f471-48ae-8d54-eba36becdf1d" />
 
+se muestra la modificación del archivo `config.json`, donde se establece la conexión entre Mattermost y la base de datos PostgreSQL mediante el parámetro `DataSource`.
+
 ## 🛠️ Creación del servicio systemd
 
 Para que Mattermost se ejecute como servicio del sistema, creé:
@@ -105,6 +108,8 @@ Para que Mattermost se ejecute como servicio del sistema, creé:
 Contenido:
 
 <img width="798" height="594" alt="image" src="https://github.com/user-attachments/assets/cd8f88d4-88ea-41d8-87e7-890f7ce491cd" />
+
+Aquí se puede ver el archivo `mattermost.service` creado manualmente. Este archivo permite que la aplicación se ejecute como un servicio del sistema y pueda iniciarse automáticamente al arrancar el servidor.
 
 Después ejecuté:
 
@@ -136,6 +141,8 @@ Inicie con el usuario y contraseña correspondiente y me encontre con el dashbor
 Acceso al dashboard:
 
 <img width="1474" height="801" alt="image" src="https://github.com/user-attachments/assets/b67ebd99-7966-49cf-863a-64764944f871" />
+
+se observa el panel principal de Mattermost una vez iniciado sesión. Esto confirma que la instalación, configuración de la base de datos y puesta en marcha del servicio han sido correctas.
 
 ## ⚠️ Problemas encontrados y soluciones
 
