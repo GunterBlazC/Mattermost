@@ -80,11 +80,12 @@ sudo chmod -R 750 /opt/mattermost
 ````
 Esto fue necesario para evitar errores de escritura en el almacenamiento local.
 
-⚙️ Configuración de conexión con la base de datos
+## ⚙️ Configuración de conexión con la base de datos
 
 Edité el archivo:
-
+````
 /opt/mattermost/config/config.json
+````
 
 Modifiqué la línea:
 
@@ -92,69 +93,51 @@ Modifiqué la línea:
 
 Con esto conecté la aplicación con PostgreSQL.
 
-📷 Captura: config.json modificado
+<img width="795" height="600" alt="image" src="https://github.com/user-attachments/assets/d8c48595-f471-48ae-8d54-eba36becdf1d" />
 
-
-🛠️ Creación del servicio systemd
+## 🛠️ Creación del servicio systemd
 
 Para que Mattermost se ejecute como servicio del sistema, creé:
 
+````
 /etc/systemd/system/mattermost.service
-
+````
 Contenido:
 
-[Unit]
-Description=Mattermost
-After=network.target
-
-[Service]
-Type=simple
-User=mattermost
-Group=mattermost
-WorkingDirectory=/opt/mattermost
-ExecStart=/opt/mattermost/bin/mattermost
-Restart=always
-RestartSec=10
-LimitNOFILE=49152
-
-[Install]
-WantedBy=multi-user.target
+<img width="798" height="594" alt="image" src="https://github.com/user-attachments/assets/cd8f88d4-88ea-41d8-87e7-890f7ce491cd" />
 
 Después ejecuté:
 
+````
 sudo systemctl daemon-reload
 sudo systemctl enable mattermost
 sudo systemctl start mattermost
-
+````
 Comprobación:
 
+````
 sudo systemctl status mattermost
+````
 
 Resultado:
 
-Active: active (running)
-
-📷 Captura: servicio activo
+<img width="800" height="404" alt="image" src="https://github.com/user-attachments/assets/ea79557a-2037-4b03-98d0-b8181f456cba" />
 
 
-🌐 Acceso desde el cliente
+
+## 🌐 Acceso desde el cliente
 
 Desde Ubuntu Desktop accedí mediante navegador a:
-
+````
 http://192.168.34.169:8065
+````
+Inicie con el usuario y contraseña correspondiente y me encontre con el dashbord que funciona correctamente 
 
-Se completó el asistente de configuración:
+Acceso al dashboard:
 
-Creación del usuario administrador
+<img width="1474" height="801" alt="image" src="https://github.com/user-attachments/assets/b67ebd99-7966-49cf-863a-64764944f871" />
 
-Creación del equipo
-
-Acceso al dashboard
-
-📷 Captura: panel principal
-
-
-⚠️ Problemas encontrados y soluciones
+## ⚠️ Problemas encontrados y soluciones
 
 Durante la instalación surgieron varios problemas:
 
@@ -166,37 +149,10 @@ Problemas de permisos en /opt/mattermost/data
 
 Se solucionaron corrigiendo sintaxis, permisos y recargando systemd.
 
-✅ Conclusión
+## ✅ Conclusión
 
 Se ha desplegado correctamente un servidor Mattermost funcional con PostgreSQL en Ubuntu Server.
 
 El servicio está integrado en el sistema mediante systemd y accesible desde red.
 
-Estado final del servicio:
-
-Active: active (running)
-
 La comunicación cliente-servidor funciona correctamente en el puerto 8065.
-
-
----
-
-# 📸 Ahora qué hacer
-
-1. En tu repo crea carpeta:
-
-capturas/
-
-
-2. Sube tus imágenes con estos nombres:
-- 01_ping.png
-- 02_postgres.png
-- 03_config.png
-- 04_service.png
-- 05_dashboard.png
-
-3. Haz commit.
-
----
-
-Si quieres, ahora te reviso tu README antes de subirlo para que quede de 10.
